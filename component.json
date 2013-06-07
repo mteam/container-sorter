@@ -1,0 +1,16 @@
+{
+  "name": "container-sorter",
+  "repo": "mteam/container-sorter",
+  "version": "0.1.0",
+  "dependencies": {
+    "component/bind": "*"
+  },
+  "development": {
+    "mteam/container": "*",
+    "timoxley/assert": "*",
+    "visionmedia/mocha": "*"
+  },
+  "scripts": [
+    "index.js"
+  ]
+}

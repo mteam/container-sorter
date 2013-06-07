@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+  <title>Container sorter tests</title>
+  <link rel="stylesheet" href="build/build.css">
+</head>
+<body>
+  <div id="mocha"></div>
+
+  <script src="build/build.js"></script>
+  <script>
+    require('mocha');
+    mocha.setup('bdd');
+  </script>
+
+  <script>
+    var assert = require('assert'),
+        Sorter = require('container-sorter'),
+        Container = require('container');
+
+    describe('Sorter', function() {
+      
+      it('sorts components', function() {
+        var ct = new Container();
+
+        var three = {a: 3};
+        ct.add(three);
+        ct.add({a: 7});
+        ct.add({a: 5});
+
+        var sorter = new Sorter(ct, function(a, b) {
+          if (a.a < b.a) return -1;
+          if (a.a == b.a) return 0;
+          if (a.a > b.a) return 1;
+        });
+
+        ct.add({a: 2});
+        ct.add({a: 4});
+        ct.add({a: 8});
+        ct.remove(three);
+
+        assert.deepEqual(sorter.components, [
+          {a: 2}, {a: 4}, {a: 5}, {a: 7}, {a: 8}
+        ]);
+      });
+    
+    });
+
+    mocha.run();
+  </script>
+</body>
+</html>
